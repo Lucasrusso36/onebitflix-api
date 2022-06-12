@@ -1,5 +1,3 @@
-// src/config/sequelizeCli.js
-
 module.exports = {
   development: {
     dialect: 'postgres',
