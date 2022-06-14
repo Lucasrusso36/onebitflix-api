@@ -1,6 +1,6 @@
 import express from 'express'
 import { database } from './database'
-import { adminJs, adminJsRouter } from './adminjs'
+import { adminJs, adminJsRouter } from './config/adminjs'
 
 const app = express()
 
