@@ -3,34 +3,25 @@ import AdminJsExpress from '@adminjs/express'
 import AdminJsSequelize from '@adminjs/sequelize'
 import { database } from '../database'
 import { adminJsResources } from '../adminjs/resources'
+import { locale } from '../adminjs/locale'
+import { dashboardOptions } from '../adminjs/dashboard'
+import { brandingOptions } from '../adminjs/branding'
+import { authtenticationOptions } from '../adminjs/authentication'
 
 AdminJs.registerAdapter(AdminJsSequelize)
 
 export const adminJs = new AdminJs({
   databases: [database],
-	resources: adminJsResources,
+  resources: adminJsResources,
   rootPath: '/admin',
-  branding: {
-    companyName: 'OneBitFlix',
-    logo: '/onebitflix.svg',
-    theme: {
-      colors: {
-        primary100: '#ff0043',
-	      primary80: '#ff1a57',
-	      primary60: '#ff3369',
-	      primary40: '#ff4d7c',
-		    primary20: '#ff668f',
-	      grey100: '#151515',
-	      grey80: '#333333',
-	      grey60: '#4d4d4d',
-	      grey40: '#666666',
-	      grey20: '#dddddd',
-	      filterBg: '#333333',
-	      accent: '#151515',
-	      hoverBg: '#151515',
-      }
-    }
-  }
+  dashboard: dashboardOptions,
+  locale: locale,
+  branding: brandingOptions
 })
 
-export const adminJsRouter = AdminJsExpress.buildRouter(adminJs)
+export const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(
+  adminJs,
+  authtenticationOptions,
+  null,
+  { resave: false, saveUninitialized: false }
+)
