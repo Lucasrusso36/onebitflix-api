@@ -13,6 +13,9 @@ export const adminJs = new AdminJs({
   databases: [database],
   rootPath: '/admin',
 	resources: adminJsResources,
+  dashboard: {
+    component: AdminJs.bundle('../adminjs/components/Dashboard')
+  },
   branding: {
     companyName: 'OneBitFlix',
     logo: '/onebitflix.svg',
