@@ -5,6 +5,7 @@ import { coursesController } from './controllers/courseController'
 import { episodesController } from './controllers/episodesController'
 import { favoritesController } from './controllers/favoritesController'
 import { likesController } from './controllers/likesController'
+import { usersController } from './controllers/usersController'
 
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 
@@ -28,6 +29,9 @@ router.post('/episodes/:id/watchTime', ensureAuth, episodesController.setWatchTi
 router.get('/favorites', ensureAuth, favoritesController.index)
 router.post('/favorites', ensureAuth, favoritesController.save)
 router.delete('/favorites', ensureAuth, favoritesController.delete)
+
+router.get('/users/current', ensureAuth, usersController.show)
+router.get('/users/current/watching', ensureAuth, usersController.watching)
 
 router.post('/likes', ensureAuth, likesController.save)
 router.delete('/likes', ensureAuth, likesController.delete)
