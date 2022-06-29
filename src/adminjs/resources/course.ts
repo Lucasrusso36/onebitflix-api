@@ -1,12 +1,9 @@
-import { FeatureType, ResourceOptions } from 'adminjs'
-import uploadFileFeature from '@adminjs/upload'
-import path from 'path'
+import uploadFileFeature from "@adminjs/upload";
+import { FeatureType, ResourceOptions } from "adminjs";
+import path from "path";
 
 export const courseResourceOptions: ResourceOptions = {
-  navigation: {
-    name: 'Catálogo',
-    icon: 'Categories'
-  },
+  navigation: 'Catálogo',
   editProperties: ['name', 'synopsis', 'uploadThumbnail', 'featured', 'categoryId'],
   filterProperties: ['name', 'synopsis', 'featured', 'categoryId', 'createdAt', 'updatedAt'],
   listProperties: ['id', 'name', 'featured', 'categoryId'],
@@ -17,7 +14,7 @@ export const courseResourceFeatures: FeatureType[] = [
   uploadFileFeature({
     provider: {
       local: {
-        bucket: path.join(__dirname, '../../../public')
+        bucket: path.join(__dirname, '..', '..', '..', 'public')
       }
     },
     properties: {

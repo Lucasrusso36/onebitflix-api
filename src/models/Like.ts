@@ -1,25 +1,33 @@
-import { database } from '../database'
-import { DataTypes, Model } from 'sequelize'
+import { DataTypes, Model } from "sequelize"
+import { sequelize } from "../database"
 
-interface LikeAttributes {
+export interface Like {
   userId: number
   courseId: number
 }
 
-interface LikeInstance extends Model<LikeAttributes>, LikeAttributes { }
+export interface LikeInstance extends Model<Like>, Like { }
 
-export const Like = database.define<LikeInstance, LikeAttributes>('likes', {
+export const Like = sequelize.define<LikeInstance, Like>('Like', {
   userId: {
     allowNull: false,
+    primaryKey: true,
     type: DataTypes.INTEGER,
-    references: { model: 'users', key: 'id' },
+    references: {
+      model: 'users',
+      key: 'id'
+    },
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE'
   },
   courseId: {
     allowNull: false,
+    primaryKey: true,
     type: DataTypes.INTEGER,
-    references: { model: 'courses', key: 'id' },
+    references: {
+      model: 'courses',
+      key: 'id'
+    },
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE'
   }
