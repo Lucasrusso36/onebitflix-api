@@ -1,6 +1,6 @@
-import { Request, Response } from 'express'
-import { AuthenticatedRequest } from '../middlewares/auth'
-import { favoriteService } from '../services/favoriteService'
+import { Response } from "express";
+import { AuthenticatedRequest } from "../middlewares/auth";
+import { favoriteService } from "../services/favoriteService";
 
 export const favoritesController = {
   // GET /favorites
@@ -17,8 +17,7 @@ export const favoritesController = {
     }
   },
 
-
- // POST /favorites
+  // POST /favorites
   save: async (req: AuthenticatedRequest, res: Response) => {
     const userId = req.user!.id
     const { courseId } = req.body
